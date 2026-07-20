@@ -17,8 +17,8 @@ export const personalData = {
   github: "https://github.com/AlpinDnt", // Ubah ke URL GitHub Anda
   linkedin: "https://www.linkedin.com/in/alvi-rupa-dinata-0132b8309?utm_source=share_via&utm_content=profile&utm_medium=member_ios", // Ubah ke URL LinkedIn Anda
   instagram: "https://www.instagram.com/alpindnt?igsh=MTN4NnNzd2hrcTh1MA%3D%3D&utm_source=qr", // Ubah ke URL Instagram Anda
-  avatar: "/foto-formal.jpeg", // Foto profil Anda di folder public/profile.jpg
-  cvUrl: "/ats-cv.pdf", // Path file CV PDF Anda di folder public/
+  avatar: "/foto-formal.jpeg", // Foto profil Anda di folder public/foto-formal.jpeg
+  cvUrl: "/AlpinDnt-CV.pdf", // Path file CV PDF Anda di folder public/
 };
 
 export const translations = {

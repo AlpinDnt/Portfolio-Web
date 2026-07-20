@@ -75,7 +75,7 @@ export const Hero = () => {
 
               <a
                 href={personalData.cvUrl}
-                download="CV_I_Putu_Alvi_Rupa_Dinata.pdf"
+                download="AlpinDnt-CV.pdf"
                 className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl text-zinc-400 hover:text-white font-medium text-sm transition-colors border border-transparent hover:border-zinc-800"
               >
                 <Download className="w-4 h-4 text-sky-400" />
