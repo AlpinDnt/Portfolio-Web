@@ -17,7 +17,6 @@ export const personalData = {
   github: "https://github.com/AlpinDnt", // Ubah ke URL GitHub Anda
   linkedin: "https://www.linkedin.com/in/alvi-rupa-dinata-0132b8309?utm_source=share_via&utm_content=profile&utm_medium=member_ios", // Ubah ke URL LinkedIn Anda
   instagram: "https://www.instagram.com/alpindnt?igsh=MTN4NnNzd2hrcTh1MA%3D%3D&utm_source=qr", // Ubah ke URL Instagram Anda
-  avatar: "/foto-formal.jpeg", // Foto profil Anda di folder public/foto-formal.jpeg
   cvUrl: "/AlpinDnt-CV.pdf", // Path file CV PDF Anda di folder public/
 };
 
@@ -91,6 +90,17 @@ export const translations = {
           featured: true,
           type: "webApp"
         },
+        {
+          id: 2,
+          category: "Web App",
+          title: "Lumina Store",
+          description: "Lumina Store adalah aplikasi web e-commerce fashion modern dan responsif yang dirancang dengan estetika minimalis. Fitur utamanya meliputi pencarian produk real-time, filter kategori dinamis, drawer keranjang belanja interaktif berbasis Context API & LocalStorage, modal detail produk dengan size selector, hingga alur simulasikan checkout pesanan yang transparan.",
+          tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Context API", "Lucide React"],
+          liveUrl: "#",
+          githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
+          featured: true,
+          type: "webApp"
+        }
       ]
     },
     contact: {
@@ -187,6 +197,17 @@ export const translations = {
           tech: ["React.js", "Tailwind CSS", "Laravel", "TypeScript", "PHP", "SQL", "Google Gemini API (gemini-2.5-flash)", "docker"],
           liveUrl: "#",
           githubUrl: "https://github.com/AlpinDnt/student-notes-ai",
+          featured: true,
+          type: "webApp"
+        },
+        {
+          id: 2,
+          category: "Web App",
+          title: "Lumina Store",
+          description: "Lumina Store is a sleek, modern, and fully responsive fashion e-commerce web application built with a minimalist aesthetic. Key features include real-time product searching, dynamic category filtering, a persistent slide-over cart drawer powered by React Context API and LocalStorage, interactive product detail modals with size selectors, and a simulated checkout flow.",
+          tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Context API", "Lucide React"],
+          liveUrl: "#",
+          githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
           featured: true,
           type: "webApp"
         }

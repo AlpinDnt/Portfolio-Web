@@ -7,13 +7,13 @@ import { User, FolderCheck, Clock, Layers, GitBranch } from 'lucide-react';
  * About: Section tentang latar belakang, filosofi belajar, dan statistik aktivitas koding Alvi Dinata.
  */
 export const About = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const stats = [
-    { label: t.about.stats.projects, value: '3+', icon: FolderCheck, color: 'text-sky-400' },
-    { label: t.about.stats.hours, value: '250+', icon: Clock, color: 'text-emerald-400' },
-    { label: t.about.stats.skills, value: '4+', icon: Layers, color: 'text-purple-400' },
-    { label: t.about.stats.commits, value: '20+', icon: GitBranch, color: 'text-amber-400' },
+    { label: t.about.stats.projects, value: '10+', icon: FolderCheck, color: 'text-sky-400' },
+    { label: t.about.stats.hours, value: '500+', icon: Clock, color: 'text-emerald-400' },
+    { label: t.about.stats.skills, value: '8+', icon: Layers, color: 'text-purple-400' },
+    { label: t.about.stats.commits, value: '250+', icon: GitBranch, color: 'text-amber-400' },
   ];
 
   return (
@@ -38,28 +38,41 @@ export const About = () => {
           
           {/* Sisi Kiri: Cerita Bio */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-7 space-y-6 text-zinc-300 text-base leading-relaxed"
+            className="lg:col-span-7 space-y-6 text-zinc-300 text-sm sm:text-base leading-relaxed"
           >
-            <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 space-y-4">
-              <p>
-                {t.about.paragraph1.replace(/\*\*/g, '')}
-              </p>
-              <p>
-                {t.about.paragraph2.replace(/\*\*/g, '')}
-              </p>
+            <div className="p-8 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 space-y-4 shadow-xl">
+              {lang === 'id' ? (
+                <>
+                  <p>
+                    Saya adalah seorang <strong className="text-sky-400">Junior Web Developer</strong> berdomisili di Bali yang berfokus pada pengembangan antarmuka web modern (<em>Frontend Development</em>). Saya sangat menikmati proses mengubah ide desain visual menjadi kode aplikasi yang interaktif dan responsif.
+                  </p>
+                  <p>
+                    Selalu antusias mempelajari teknologi web terkini seperti React.js, Tailwind CSS, dan arsitektur aplikasi modern. Saya berkomitmen untuk menulis kode yang bersih, mudah dipelihara, dan terus mengasah skill setiap hari.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    I am a <strong className="text-sky-400">Junior Web Developer</strong> based in Bali specializing in modern <em>Frontend Development</em>. I enjoy transforming visual design concepts into interactive, high-performance, and pixel-perfect web applications.
+                  </p>
+                  <p>
+                    Always excited to learn cutting-edge web technologies like React.js, Tailwind CSS, and modern web architecture. I am committed to writing clean, maintainable code and continuously sharpening my skills every day.
+                  </p>
+                </>
+              )}
             </div>
           </motion.div>
 
           {/* Sisi Kanan: 4 Kartu Statistik */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-5 grid grid-cols-2 gap-4"
           >
             {stats.map((item, index) => {
@@ -67,7 +80,7 @@ export const About = () => {
               return (
                 <div
                   key={index}
-                  className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:-translate-y-1 shadow-lg text-left"
+                  className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700/80 transition-all duration-300 hover:-translate-y-1 shadow-lg text-left"
                 >
                   <div className={`p-2.5 rounded-xl bg-zinc-800/60 w-fit mb-3 ${item.color}`}>
                     <IconComponent className="w-5 h-5" />
@@ -75,7 +88,7 @@ export const About = () => {
                   <h3 className="text-3xl font-extrabold text-white tracking-tight">
                     {item.value}
                   </h3>
-                  <p className="text-xs font-medium text-zinc-400 mt-1">
+                  <p className="text-xs font-semibold text-zinc-400 mt-1">
                     {item.label}
                   </p>
                 </div>

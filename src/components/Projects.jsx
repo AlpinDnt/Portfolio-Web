@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, ExternalLink, Sparkles, Eye } from 'lucide-react';
+import { FolderGit2, ExternalLink, Sparkles, Eye, Terminal, Layers } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
 /**
  * Projects: Section showcase proyek web Alvi Dinata dengan filter kategori interaktif dan modal preview.
+ * Didesain ulang menjadi murni tipografi minimalis tanpa foto/gambar preview browser.
  */
 export const Projects = () => {
   const { t } = useLanguage();
@@ -52,7 +53,7 @@ export const Projects = () => {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
                 activeFilter === tab.key
                   ? 'bg-sky-500 text-zinc-950 shadow-lg shadow-sky-500/25 scale-105'
-                  : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700'
+                  : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800/80 hover:border-zinc-700'
               }`}
             >
               {tab.label}
@@ -67,63 +68,36 @@ export const Projects = () => {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="group rounded-2xl bg-zinc-900/80 border border-zinc-800/80 overflow-hidden hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 shadow-xl"
+                className="group rounded-2xl bg-zinc-900/40 border border-zinc-800/80 p-6 hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 shadow-xl hover:bg-zinc-900/60"
               >
-                <div>
-                  {/* Container Mockup Visual Preview */}
-                  <div className="relative h-48 w-full bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-950 overflow-hidden p-4 flex items-center justify-center">
-                    {/* Visual UI Code Graphic representation */}
-                    <div className="w-full h-full rounded-xl bg-zinc-950/80 border border-zinc-800/80 p-3 shadow-inner space-y-2 flex flex-col justify-between group-hover:border-sky-500/30 transition-all">
-                      <div className="flex items-center gap-1.5 border-b border-zinc-800/60 pb-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                        <span className="text-[10px] text-zinc-500 ml-2 font-mono">{project.category} Preview</span>
-                      </div>
-                      <div className="space-y-1.5 py-1">
-                        <div className="h-3 w-3/4 bg-sky-500/20 rounded-md" />
-                        <div className="h-2 w-1/2 bg-zinc-800 rounded-md" />
-                        <div className="h-2 w-5/6 bg-zinc-800/60 rounded-md" />
-                      </div>
-                      <div className="flex justify-between items-center text-[10px] text-zinc-400 font-mono pt-1">
-                        <span>v1.0.0</span>
-                        <span className="text-sky-400">React + Tailwind</span>
-                      </div>
+                <div className="space-y-4">
+                  {/* Card Header dengan Icon & Badges */}
+                  <div className="flex items-center justify-between">
+                    <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800 group-hover:border-sky-500/30 text-sky-400 transition-colors">
+                      <Terminal className="w-5 h-5" />
                     </div>
-
-                    {/* Hover Overlay Button */}
-                    <div className="absolute inset-0 bg-zinc-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-xs">
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        className="p-3 rounded-xl bg-sky-500 text-zinc-950 font-bold hover:scale-110 transition-transform shadow-lg"
-                        title="Quick View"
-                      >
-                        <Eye className="w-5 h-5" />
-                      </button>
+                    
+                    <div className="flex items-center gap-2">
+                      {project.featured && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-400 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                          <Sparkles className="w-2.5 h-2.5" /> Featured
+                        </span>
+                      )}
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                        {project.category}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Body Kartu Proyek */}
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                        {project.category}
-                      </span>
-                      {project.featured && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-400">
-                          <Sparkles className="w-3 h-3" /> Featured
-                        </span>
-                      )}
-                    </div>
-
+                  {/* Title & Description */}
+                  <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">
                       {project.title}
                     </h3>
-
                     <p className="text-xs sm:text-sm text-zinc-400 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
@@ -131,33 +105,41 @@ export const Projects = () => {
                 </div>
 
                 {/* Tech Stack Badges & Links Footer */}
-                <div className="p-6 pt-0 space-y-4">
+                <div className="space-y-4 mt-6 pt-4 border-t border-zinc-800/60">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((tItem, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[11px] font-medium px-2.5 py-0.5 rounded bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
+                        className="text-[10px] font-medium px-2 py-0.5 rounded bg-zinc-950/60 text-zinc-300 border border-zinc-850"
                       >
                         {tItem}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-3 pt-3 border-t border-zinc-800/80">
+                  <div className="flex items-center gap-3 pt-2">
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-zinc-950/85 hover:bg-sky-500 text-zinc-400 hover:text-zinc-950 border border-zinc-800 hover:border-sky-500/20 font-bold text-xs transition-all"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>Quick View</span>
+                    </button>
+                    
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-zinc-950 font-semibold text-xs transition-all border border-sky-500/30"
+                      className="p-2.5 rounded-xl bg-zinc-950/85 border border-zinc-800 hover:border-sky-500/40 text-zinc-400 hover:text-sky-400 transition-all"
+                      title={t.projects.viewLive}
                     >
-                      <span>{t.projects.viewLive}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="p-2 rounded-xl bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all border border-zinc-700/50"
+                      className="p-2.5 rounded-xl bg-zinc-950/85 border border-zinc-800 hover:border-sky-500/40 text-zinc-400 hover:text-white transition-all"
                       title={t.projects.viewSource}
                     >
                       <GithubIcon className="w-4 h-4" />

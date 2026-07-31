@@ -2,11 +2,82 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { personalData } from '../data/translations';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Mail, Code } from 'lucide-react';
+import { ArrowRight, Download, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
 
 /**
- * Hero: Section utama paling atas yang memperkenalkan Alvi Dinata dengan visual portrait, deskripsi ringkas, dan tombol CTA.
+ * CodeTerminal: Komponen simulasi terminal IDE/Editor kode yang teranimasi sebagai pengganti foto profil.
+ */
+const CodeTerminal = () => {
+  const { lang } = useLanguage();
+
+  // Objek data developer untuk ditampilkan di terminal tiruan
+  const codeLines = lang === 'id' 
+    ? [
+        { num: 1, text: 'const developer = {', color: 'text-zinc-400' },
+        { num: 2, text: '  nama: "I Putu Alvi Rupa Dinata",', color: 'text-emerald-400 pl-4' },
+        { num: 3, text: '  peran: "Junior Web Developer",', color: 'text-emerald-400 pl-4' },
+        { num: 4, text: '  domisili: "Bali, Indonesia",', color: 'text-emerald-400 pl-4' },
+        { num: 5, text: '  keahlian: ["React", "Tailwind", "JS"],', color: 'text-sky-400 pl-4' },
+        { num: 6, text: '  status: "Tersedia untuk Pekerjaan",', color: 'text-amber-400 pl-4' },
+        { num: 7, text: '  kopi: true', color: 'text-purple-400 pl-4' },
+        { num: 8, text: '};', color: 'text-zinc-400' },
+      ]
+    : [
+        { num: 1, text: 'const developer = {', color: 'text-zinc-400' },
+        { num: 2, text: '  name: "I Putu Alvi Rupa Dinata",', color: 'text-emerald-400 pl-4' },
+        { num: 3, text: '  role: "Junior Web Developer",', color: 'text-emerald-400 pl-4' },
+        { num: 4, text: '  location: "Bali, Indonesia",', color: 'text-emerald-400 pl-4' },
+        { num: 5, text: '  skills: ["React", "Tailwind", "JS"],', color: 'text-sky-400 pl-4' },
+        { num: 6, text: '  status: "Available for Hire",', color: 'text-amber-400 pl-4' },
+        { num: 7, text: '  coffee: true', color: 'text-purple-400 pl-4' },
+        { num: 8, text: '};', color: 'text-zinc-400' },
+      ];
+
+  return (
+    <div className="w-full max-w-md rounded-2xl bg-zinc-950 border border-zinc-800/80 shadow-2xl overflow-hidden font-mono text-xs sm:text-sm glow-box">
+      {/* Terminal Title Bar */}
+      <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/60 border-b border-zinc-800/60">
+        <div className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+          <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+          <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+        </div>
+        <span className="text-[11px] text-zinc-500 font-semibold select-none">developer.js</span>
+        <div className="w-10" /> {/* Spacer */}
+      </div>
+
+      {/* Terminal Content Lines */}
+      <div className="p-6 space-y-2 select-text">
+        {codeLines.map((line, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: idx * 0.1 }}
+            className="flex items-start"
+          >
+            <span className="text-zinc-600 text-right pr-4 select-none w-5">{line.num}</span>
+            <span className={line.color}>{line.text}</span>
+          </motion.div>
+        ))}
+
+        {/* Cursor Teranimasi */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ repeat: Infinity, duration: 1 }}
+          className="flex items-center mt-2 pl-5"
+        >
+          <span className="w-2.5 h-4 bg-sky-500 rounded-xs" />
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Hero: Section utama paling atas yang memperkenalkan Alvi Dinata dengan visual tipografi, deskripsi ringkas, dan tombol CTA.
  */
 export const Hero = () => {
   const { t } = useLanguage();
@@ -102,40 +173,14 @@ export const Hero = () => {
 
           </motion.div>
 
-          {/* Sisi Kanan: Foto Profil Avatar dengan Glowing Ring Card */}
+          {/* Sisi Kanan: Menggunakan Terminal Code sebagai pengganti foto */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-5 flex justify-center w-full"
           >
-            <div className="relative group">
-              {/* Glowing Ambient Border */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-500 opacity-30 group-hover:opacity-60 blur-xl transition duration-500" />
-
-              {/* Frame Foto Main */}
-              <div className="relative rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 p-3 w-72 sm:w-80 shadow-2xl">
-                <img
-                  src={personalData.avatar}
-                  alt={personalData.name}
-                  className="w-full h-80 sm:h-96 object-cover rounded-2xl group-hover:scale-105 transition duration-500"
-                />
-
-                {/* Floating Junior Developer Badge */}
-                <div className="absolute bottom-6 left-6 right-6 p-3.5 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-zinc-800/90 text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-sky-500/20 text-sky-400">
-                      <Code className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-white">{personalData.role}</p>
-                      <p className="text-[11px] text-zinc-400">{personalData.location}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+            <CodeTerminal />
           </motion.div>
 
         </div>
