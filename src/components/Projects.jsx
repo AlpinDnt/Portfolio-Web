@@ -62,94 +62,93 @@ export const Projects = () => {
         </div>
 
         {/* Projects Cards Grid (2 columns on tablet/desktop) */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="group rounded-2xl bg-zinc-900/30 border border-zinc-800/80 p-5 hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-md hover:bg-zinc-900/50"
-              >
-                <div className="space-y-4">
-                  {/* Card Header dengan Icon & Badges */}
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-lg bg-zinc-950/80 border border-zinc-850 group-hover:border-sky-500/30 text-sky-400 transition-colors">
-                      <Terminal className="w-4.5 h-4.5" />
-                    </div>
-                    
-                    <div className="flex items-center gap-1.5">
-                      {project.featured && (
-                        <span className="inline-flex items-center gap-1 text-[9px] font-bold text-amber-400 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
-                          <Sparkles className="w-2.5 h-2.5" /> Featured
-                        </span>
-                      )}
-                      <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                        {project.category}
-                      </span>
-                    </div>
+        <motion.div
+          key={activeFilter}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="group rounded-2xl bg-zinc-900/30 border border-zinc-800/80 p-5 hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-md hover:bg-zinc-900/50"
+            >
+              <div className="space-y-4">
+                {/* Card Header dengan Icon & Badges */}
+                <div className="flex items-center justify-between">
+                  <div className="p-2.5 rounded-lg bg-zinc-950/80 border border-zinc-850 group-hover:border-sky-500/30 text-sky-400 transition-colors">
+                    <Terminal className="w-4.5 h-4.5" />
                   </div>
-
-                  {/* Title & Description */}
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 line-clamp-3 leading-relaxed">
-                      {project.description}
-                    </p>
+                  
+                  <div className="flex items-center gap-1.5">
+                    {project.featured && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-bold text-amber-400 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                        <Sparkles className="w-2.5 h-2.5" /> Featured
+                      </span>
+                    )}
+                    <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                      {project.category}
+                    </span>
                   </div>
                 </div>
 
-                {/* Tech Stack Badges & Links Footer */}
-                <div className="space-y-4 mt-6 pt-4 border-t border-zinc-800/60">
-                  <div className="flex flex-wrap gap-1">
-                    {project.tech.map((tItem, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[9px] font-medium px-2 py-0.5 rounded bg-zinc-950/60 text-zinc-300 border border-zinc-850"
-                      >
-                        {tItem}
-                      </span>
-                    ))}
-                  </div>
+                {/* Title & Description */}
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 line-clamp-3 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
 
-                  <div className="flex items-center gap-2 pt-1">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-zinc-950/80 hover:bg-sky-500 text-zinc-400 hover:text-zinc-950 border border-zinc-850 hover:border-sky-500/20 font-bold text-[11px] transition-all"
+              {/* Tech Stack Badges & Links Footer */}
+              <div className="space-y-4 mt-6 pt-4 border-t border-zinc-800/60">
+                <div className="flex flex-wrap gap-1">
+                  {project.tech.map((tItem, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[9px] font-medium px-2 py-0.5 rounded bg-zinc-950/60 text-zinc-300 border border-zinc-850"
                     >
-                      <Eye className="w-3 h-3" />
-                      <span>Quick View</span>
-                    </button>
-                    
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-zinc-950/80 border border-zinc-850 hover:border-sky-500/40 text-zinc-400 hover:text-sky-400 transition-all"
-                      title={t.projects.viewLive}
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-zinc-950/80 border border-zinc-850 hover:border-sky-500/40 text-zinc-400 hover:text-white transition-all"
-                      title={t.projects.viewSource}
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
+                      {tItem}
+                    </span>
+                  ))}
                 </div>
 
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                <div className="flex items-center gap-2 pt-1">
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-zinc-950/80 hover:bg-sky-500 text-zinc-400 hover:text-zinc-950 border border-zinc-850 hover:border-sky-500/20 font-bold text-[11px] transition-all"
+                  >
+                    <Eye className="w-3 h-3" />
+                    <span>Quick View</span>
+                  </button>
+                  
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-lg bg-zinc-950/80 border border-zinc-850 hover:border-sky-500/40 text-zinc-400 hover:text-sky-400 transition-all"
+                    title={t.projects.viewLive}
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-lg bg-zinc-950/80 border border-zinc-850 hover:border-sky-500/40 text-zinc-400 hover:text-white transition-all"
+                    title={t.projects.viewSource}
+                  >
+                    <GithubIcon className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          ))}
         </motion.div>
 
         {/* Modal Quick View Details */}
