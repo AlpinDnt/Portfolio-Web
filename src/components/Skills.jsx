@@ -15,11 +15,11 @@ export const Skills = () => {
       title: t.skills.categories.frontend,
       icon: Code2,
       skills: [
-        { name: 'HTML5', level: t.skills.levels.advanced, percent: 90 },
-        { name: 'CSS3 / Modern Styling', level: t.skills.levels.advanced, percent: 85 },
-        { name: 'JavaScript (ES6+)', level: t.skills.levels.intermediate, percent: 80 },
-        { name: 'Tailwind CSS', level: t.skills.levels.advanced, percent: 88 },
-        { name: 'React.js', level: t.skills.levels.intermediate, percent: 75 },
+        { name: 'HTML5', level: t.skills.levels.advanced, percent: 80 },
+        { name: 'CSS3 / Modern Styling', level: t.skills.levels.intermediate, percent: 75 },
+        { name: 'JavaScript (ES6+)', level: t.skills.levels.learning, percent: 65 },
+        { name: 'Tailwind CSS', level: t.skills.levels.intermediate, percent: 75 },
+        { name: 'React.js', level: t.skills.levels.learning, percent: 65 },
       ],
     },
     {
@@ -27,8 +27,8 @@ export const Skills = () => {
       icon: Database,
       skills: [
         { name: 'Node.js (Basics)', level: t.skills.levels.learning, percent: 60 },
-        { name: 'RESTful API', level: t.skills.levels.intermediate, percent: 75 },
-        { name: 'JSON Data', level: t.skills.levels.advanced, percent: 85 },
+        { name: 'RESTful API', level: t.skills.levels.learning, percent: 75 },
+        { name: 'JSON Data', level: t.skills.levels.learning, percent: 70 },
       ],
     },
     {
@@ -37,8 +37,8 @@ export const Skills = () => {
       skills: [
         { name: 'Git & GitHub', level: t.skills.levels.intermediate, percent: 80 },
         { name: 'Vite & npm', level: t.skills.levels.intermediate, percent: 78 },
-        { name: 'Figma UI/UX Design', level: t.skills.levels.intermediate, percent: 70 },
-        { name: 'Responsive Web Design', level: t.skills.levels.advanced, percent: 92 },
+        { name: 'Figma UI/UX Design', level: t.skills.levels.learning, percent: 70 },
+        { name: 'Responsive Web Design', level: t.skills.levels.learning, percent: 70 },
       ],
     },
   ];
