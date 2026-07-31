@@ -11,10 +11,10 @@ export const About = () => {
   const { t, lang } = useLanguage();
 
   const stats = [
-    { label: t.about.stats.projects, value: '10+', icon: FolderCheck, color: 'text-sky-400' },
-    { label: t.about.stats.hours, value: '500+', icon: Clock, color: 'text-emerald-400' },
-    { label: t.about.stats.skills, value: '8+', icon: Layers, color: 'text-purple-400' },
-    { label: t.about.stats.commits, value: '250+', icon: GitBranch, color: 'text-amber-400' },
+    { label: t.about.stats.projects, value: '4+', icon: FolderCheck, color: 'text-sky-400' },
+    { label: t.about.stats.hours, value: '250+', icon: Clock, color: 'text-emerald-400' },
+    { label: t.about.stats.skills, value: '6+', icon: Layers, color: 'text-purple-400' },
+    { label: t.about.stats.commits, value: '90+', icon: GitBranch, color: 'text-amber-400' },
   ];
 
   return (
