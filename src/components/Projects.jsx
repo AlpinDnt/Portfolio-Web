@@ -66,7 +66,7 @@ export const Projects = () => {
           key={activeFilter}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
           {filteredProjects.map((project) => (
