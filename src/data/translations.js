@@ -96,7 +96,7 @@ export const translations = {
           title: "Lumina Store",
           description: "Lumina Store adalah aplikasi web e-commerce fashion modern dan responsif yang dirancang dengan estetika minimalis. Fitur utamanya meliputi pencarian produk real-time, filter kategori dinamis, drawer keranjang belanja interaktif berbasis Context API & LocalStorage, modal detail produk dengan size selector, hingga alur simulasikan checkout pesanan yang transparan.",
           tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Context API", "Lucide React"],
-          liveUrl: "#",
+          liveUrl: "https://lumina-store-online.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
           featured: true,
           type: "webApp"
@@ -206,7 +206,7 @@ export const translations = {
           title: "Lumina Store",
           description: "Lumina Store is a sleek, modern, and fully responsive fashion e-commerce web application built with a minimalist aesthetic. Key features include real-time product searching, dynamic category filtering, a persistent slide-over cart drawer powered by React Context API and LocalStorage, interactive product detail modals with size selectors, and a simulated checkout flow.",
           tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Context API", "Lucide React"],
-          liveUrl: "#",
+          liveUrl: "https://lumina-store-online.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
           featured: true,
           type: "webApp"
