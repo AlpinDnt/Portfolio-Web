@@ -85,7 +85,7 @@ export const translations = {
           title: "Student Notes AI",
           description: "Student Notes AI adalah aplikasi web full-stack yang memungkinkan pengguna meng-upload materi kuliah dalam format PDF, lalu secara otomatis menghasilkan catatan belajar terstruktur, ringkasan TL;DR, kuis pilihan ganda, dan flashcard menggunakan Gemini API. Setiap pengguna memiliki akun pribadi dengan riwayat materi yang bersifat privat, dan admin memiliki dashboard khusus untuk mengelola pengguna.",
           tech: ["React.js", "Tailwind CSS", "Laravel", "TypeScript", "PHP", "SQL", "Google Gemini API (gemini-2.5-flash)", "docker"],
-          liveUrl: "#",
+          liveUrl: "https://student-notes-ai-git-main-kanebo.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/student-notes-ai",
           featured: true,
           type: "webApp"
@@ -195,7 +195,7 @@ export const translations = {
           title: "Student Notes AI",
           description: "Student Notes AI is a full-stack web application that lets users upload PDF course materials and automatically generates structured study notes, TL;DR summaries, multiple-choice quizzes, and flashcards using the Gemini API. Each user has a personal account with private material history, while admins get a dedicated dashboard for user management.",
           tech: ["React.js", "Tailwind CSS", "Laravel", "TypeScript", "PHP", "SQL", "Google Gemini API (gemini-2.5-flash)", "docker"],
-          liveUrl: "#",
+          liveUrl: "https://student-notes-ai-git-main-kanebo.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/student-notes-ai",
           featured: true,
           type: "webApp"
