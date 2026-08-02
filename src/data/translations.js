@@ -15,7 +15,7 @@ export const personalData = {
   email: "ptu.alvi@gmail.com", // Ubah ke email Anda
   whatsapp: "+6282325494970", // Ubah ke nomor WA Anda
   github: "https://github.com/AlpinDnt", // Ubah ke URL GitHub Anda
-  linkedin: "https://www.linkedin.com/in/alvi-rupa-dinata-0132b8309?utm_source=share_via&utm_content=profile&utm_medium=member_ios", // Ubah ke URL LinkedIn Anda
+  linkedin: "https://www.linkedin.com/in/alpindnt/", // Ubah ke URL LinkedIn Anda
   instagram: "https://www.instagram.com/alpindnt?igsh=MTN4NnNzd2hrcTh1MA%3D%3D&utm_source=qr", // Ubah ke URL Instagram Anda
   cvUrl: "/AlpinDnt-CV.pdf", // Path file CV PDF Anda di folder public/
 };
