@@ -110,7 +110,7 @@ export const translations = {
           liveUrl: "https://kroma-coffee.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/kroma-coffee",
           featured: true,
-          type: "landingpage"
+          type: "landing"
         }
       ]
     },
@@ -231,7 +231,7 @@ export const translations = {
           liveUrl: "https://kroma-coffee.vercel.app/",
           githubUrl: "https://github.com/AlpinDnt/kroma-coffee",
           featured: true,
-          type: "landingpage"
+          type: "landing"
         }
       ]
     },
