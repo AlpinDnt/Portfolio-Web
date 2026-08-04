@@ -20,6 +20,7 @@ export const Skills = () => {
         { name: 'JavaScript (ES6+)', level: t.skills.levels.learning, percent: 65 },
         { name: 'Tailwind CSS', level: t.skills.levels.intermediate, percent: 75 },
         { name: 'React.js', level: t.skills.levels.learning, percent: 65 },
+        { name: 'Next.js', level: t.skills.levels.learning, percent: 55 },
       ],
     },
     {
