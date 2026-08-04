@@ -119,7 +119,7 @@ export const Contact = () => {
                       </div>
                       <div>
                         <p className="text-[10px] text-zinc-500 font-semibold uppercase tracking-wider">{card.title}</p>
-                        <p className="text-xs sm:text-sm font-bold text-zinc-200 group-hover:text-sky-400 transition-colors break-all">
+                        <p className="text-xs sm:text-sm font-bold text-zinc-200 group-hover:text-sky-400 transition-colors whitespace-pre-line break-words">
                           {card.value}
                         </p>
                       </div>
