@@ -93,7 +93,7 @@ export const Skills = () => {
                           <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
                           {skill.name}
                         </span>
-                        <span className="text-[10px] text-zinc-400 font-medium px-1.5 py-0.5 rounded bg-zinc-800/50 border border-zinc-800">
+                        <span className="w-28 text-center flex-shrink-0 text-[10px] text-zinc-400 font-medium py-0.5 rounded bg-zinc-800/50 border border-zinc-800 select-none">
                           {skill.level}
                         </span>
                       </div>
