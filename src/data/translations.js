@@ -100,6 +100,17 @@ export const translations = {
           githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
           featured: true,
           type: "webApp"
+        },
+        {
+          id: 3,
+          category: "Landing Page",
+          title: "Kroma Coffee",
+          description: "Landing page kedai kopi specialty modern dan estetis bernuansa warm dark mode. Dilengkapi dengan filter menu interaktif berbasis kategori, section cerita/filosofi roasting, informasi lokasi & jam operasional dengan peta Google Maps ber-theme gelap, serta optimasi SEO Metadata.",
+          tech: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "Lucide React"],
+          liveUrl: "https://kroma-coffee.vercel.app/",
+          githubUrl: "https://github.com/AlpinDnt/kroma-coffee",
+          featured: true,
+          type: "landingpage"
         }
       ]
     },
@@ -210,6 +221,17 @@ export const translations = {
           githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
           featured: true,
           type: "webApp"
+        },
+        {
+          id: 3,
+          category: "Landing Page",
+          title: "Kroma Coffee",
+          description: "A modern and aesthetic specialty coffee shop landing page featuring a warm dark mode theme. Equipped with an interactive category-based menu filter, a dedicated roasting story & philosophy section, location & operating hours with a dark-themed Google Maps integration, and SEO metadata optimization.",
+          tech: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "Lucide React"],
+          liveUrl: "https://kroma-coffee.vercel.app/",
+          githubUrl: "https://github.com/AlpinDnt/kroma-coffee",
+          featured: true,
+          type: "landingpage"
         }
       ]
     },
