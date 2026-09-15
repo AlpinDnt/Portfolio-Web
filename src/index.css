@@ -1,64 +1,326 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --font-heading: 'Space Grotesk', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    --page-bg: #eef1f6;
+    --page-ink: #0f172a;
+    --page-muted: #475569;
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-strong-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(15, 23, 42, 0.1);
+    --glass-shadow: 0 18px 50px -18px rgba(15, 23, 42, 0.28);
+    --chip-bg: rgba(255, 255, 255, 0.7);
+    --field-bg: rgba(255, 255, 255, 0.7);
+    --aurora-a: #38bdf8;
+    --aurora-b: #818cf8;
+    --aurora-c: #22d3ee;
+    color-scheme: light;
+  }
+
+  .dark {
+    --page-bg: #07070c;
+    --page-ink: #f4f4f5;
+    --page-muted: #a1a1aa;
+    --glass-bg: rgba(20, 20, 28, 0.5);
+    --glass-strong-bg: rgba(24, 24, 33, 0.68);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+    --chip-bg: rgba(12, 12, 18, 0.6);
+    --field-bg: rgba(9, 9, 14, 0.6);
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #0c0c0e;
-    color: #f4f4f5;
+    background-color: var(--page-bg);
+    color: var(--page-ink);
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.35);
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .font-display {
+    font-family: var(--font-heading);
+  }
 }
 
-/* Custom Scrollbar */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-strong {
+    background: var(--glass-strong-bg);
+    backdrop-filter: blur(26px) saturate(1.4);
+    -webkit-backdrop-filter: blur(26px) saturate(1.4);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-pill,
+  .glass-chip {
+    background: var(--chip-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 28px -14px rgba(2, 6, 23, 0.4);
+    color: var(--page-ink);
+  }
+
+  .glass-chip {
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .glass-nav {
+    background: var(--glass-strong-bg);
+    backdrop-filter: blur(22px) saturate(1.35);
+    -webkit-backdrop-filter: blur(22px) saturate(1.35);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-field {
+    background: var(--field-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--page-ink);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-field::placeholder {
+    color: var(--page-muted);
+    opacity: 0.9;
+  }
+
+  .micro-label,
+  .form-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--page-muted);
+  }
+
+  .form-label {
+    display: block;
+  }
+
+  .aurora-field {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background:
+      radial-gradient(60rem 30rem at 15% -5%, color-mix(in srgb, var(--aurora-a) 26%, transparent), transparent 60%),
+      radial-gradient(50rem 28rem at 90% 10%, color-mix(in srgb, var(--aurora-b) 26%, transparent), transparent 62%),
+      radial-gradient(44rem 30rem at 50% 110%, color-mix(in srgb, var(--aurora-c) 20%, transparent), transparent 60%),
+      var(--page-bg);
+  }
+
+  .aurora-blob {
+    position: absolute;
+    width: 42vmax;
+    height: 42vmax;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.5;
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+
+  .aurora-blob-a {
+    left: -12vmax;
+    top: -14vmax;
+    background: radial-gradient(circle at 30% 30%, var(--aurora-a), transparent 65%);
+  }
+
+  .aurora-blob-b {
+    right: -14vmax;
+    top: 6vh;
+    background: radial-gradient(circle at 60% 40%, var(--aurora-b), transparent 66%);
+    animation-delay: -6s;
+  }
+
+  .aurora-blob-c {
+    left: 22vw;
+    bottom: -20vmax;
+    background: radial-gradient(circle at 50% 50%, var(--aurora-c), transparent 64%);
+    animation-delay: -12s;
+  }
+
+  .dark .aurora-blob {
+    opacity: 0.34;
+  }
+
+  .cube-face {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px -24px rgba(15, 23, 42, 0.35);
+  }
+
+  .dark .cube-face {
+    background: rgba(17, 17, 25, 0.94);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+  }
+
+  .cube-tile {
+    background: #ffffff;
+  }
+
+  .dark .cube-tile {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .rank-1 {    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1c1005;
+  }
+  .rank-2 {
+    background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+    color: #0f172a;
+  }
+  .rank-3 {
+    background: linear-gradient(135deg, #fdba74, #b45309);
+    color: #1c0e02;
+  }
+
+  #glass-cursor {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  .dark #glass-cursor {
+    opacity: 1;
+  }
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0c0e;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 4px;
+  background: color-mix(in srgb, var(--page-muted) 55%, transparent);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #38bdf8;
+  background-clip: content-box;
 }
 
-/* Glowing text utility */
-.glow-text {
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 6%, 0) scale(1.12);
+  }
 }
 
-.glow-box {
-  box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.15);
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
 }
 
-/* Glassmorphism Card Style */
-.glass-card {
-  background: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-.glass-card-hover:hover {
-  background: rgba(30, 30, 36, 0.85);
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15);
-  transform: translateY(-4px);
+.loader-bar {
+  width: 40%;
+  animation: loader-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes loader-slide {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+.loader-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 1.5rem;
+  border: 2px solid transparent;
+  border-top-color: #38bdf8;
+  animation: loader-spin 1s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .aurora-blob {
+    animation: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .loader-bar,
+  .loader-ring {
+    animation: none;
+  }
+  #glass-cursor {
+    display: none;
+  }
 }

@@ -238,6 +238,40 @@ export const translations = {
     contact: {
       title: "Get In Touch",
       subtitle: "Interested in working together or have a question? Let's connect!",
+      ctaBadge: "Available for freelance projects",
+      bigTitleA: "Let's Build",
+      bigTitleB: "Something Amazing",
+      ctaTitle: "Have a project in mind? Let's build it together.",
+      ctaText: "Tell me about your landing page or web app — I will get back to you with ideas and a clear next step.",
+      emailMe: "Email Me",
+      whatsappMe: "WhatsApp",
+      copyEmail: "Copy email",
+      copiedMsg: "Email copied to clipboard.",
+      servicesEyebrow: "What I can do for you",
+      servicesTitleA: "Pick a lane,",
+      servicesTitleB: "let's ship it.",
+      servicesSub: "Three ways we can work together — every card opens a chat with the brief already drafted.",
+      servicesNote: "Prefer email? Write anytime — every message goes straight to my inbox.",
+      items: [
+        {
+          title: "Landing Pages",
+          desc: "Responsive, high-converting pages for products, cafés, and campaigns — like Kroma Coffee.",
+          cta: "Start a landing page",
+          waText: "Hi Alvi! I need a landing page for my business. Can we discuss it?",
+        },
+        {
+          title: "Web Apps",
+          desc: "Interactive React apps with real features — search, carts, dashboards — like Lumina Store.",
+          cta: "Start a web app",
+          waText: "Hi Alvi! I want to build a web app. Here is what I have in mind:",
+        },
+        {
+          title: "UI Revamps",
+          desc: "Turn an outdated page into a modern, fast glass interface with clearer structure.",
+          cta: "Revamp my UI",
+          waText: "Hi Alvi! I want to revamp my website UI. Can you take a look?",
+        },
+      ],
       formTitle: "Send a Message",
       nameLabel: "Full Name",
       namePlaceholder: "Enter your full name",
@@ -260,6 +294,9 @@ export const translations = {
       tagline: "Crafted with React.js & Tailwind CSS.",
       copyright: "All rights reserved.",
       backToTop: "Back to Top",
+      sections: "Sections",
+      connect: "Connect",
+      direct: "Direct",
     }
   }
 };

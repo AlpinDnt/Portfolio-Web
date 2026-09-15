@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# AI tooling (personal, reinstallable)
+.opencode/skills/
+
+# Impeccable session state (regenerate via /impeccable document)
+.impeccable/

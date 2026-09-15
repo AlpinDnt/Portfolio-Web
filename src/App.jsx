@@ -1,172 +1,272 @@
 import React, { useState, useEffect } from 'react';
-import { LanguageProvider, useLanguage } from './context/LanguageContext';
-import { personalData } from './data/translations';
+import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './context/ThemeContext';
+import { personalData, translations } from './data/translations';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './components/SocialIcons';
-import { Mail, Globe } from 'lucide-react';
-import LanguageToggle from './components/LanguageToggle';
+import { Mail, Menu, X } from 'lucide-react';
+import ThemeToggle from './components/ThemeToggle';
+import useCanvasCursor from './hooks/useCanvasCursor';
 
-// Right Panel Sections
 import Hero from './components/Hero';
+import Loader from './components/Loader';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-/**
- * MainLayout: Mengatur tata letak Split-Screen (Kiri Fixed, Kanan Scrollable)
- * serta mengimplementasikan Scroll Spy untuk mencocokkan navigasi aktif.
- */
-function MainLayout() {
-  const { t, lang } = useLanguage();
-  const [activeSection, setActiveSection] = useState('home');
+const t = translations.en;
 
-  // Efek Scroll Spy untuk melacak posisi scroll dan memperbarui menu aktif di kiri
+const CanvasCursor = () => {
+  useCanvasCursor('glass-cursor');
+  return <canvas id="glass-cursor" aria-hidden="true" />;
+};
+
+const GlassNav = () => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('home');
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 250; // Offset deteksi aktif
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navLinks = [
+  useEffect(() => {
+    const ids = ['home', 'about', 'skills', 'projects', 'contact'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const links = [
     { name: t.nav.home, href: '#home', id: 'home' },
     { name: t.nav.about, href: '#about', id: 'about' },
     { name: t.nav.skills, href: '#skills', id: 'skills' },
-    { name: t.nav.projects, href: '#projects', id: 'projects' },
+    { name: 'Top 3', href: '#projects', id: 'projects' },
     { name: t.nav.contact, href: '#contact', id: 'contact' },
   ];
 
   return (
-    <div className="min-h-screen bg-[#0c0c0e] text-zinc-100 font-sans selection:bg-sky-500 selection:text-zinc-950 relative">
-      
-      {/* Container Utama Grid 12 Kolom */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          
-          {/* ==========================================
-              KOLOM KIRI: FIXED PANEL (Desktop Only)
-              ========================================== */}
-          <aside className="lg:col-span-5 lg:sticky lg:top-0 lg:h-screen lg:py-24 py-12 flex flex-col justify-between border-b lg:border-b-0 border-zinc-900 z-20">
-            
-            {/* Header & Bio Singkat */}
-            <div className="space-y-4">
-              {/* Logo / Nama */}
-              <a href="#home" className="text-2xl font-extrabold tracking-tight text-white hover:text-sky-400 transition-colors">
+    <header className="fixed top-3 sm:top-5 inset-x-0 z-40 px-3 sm:px-6">
+      <nav
+        aria-label="Primary"
+        className={`glass-nav relative mx-auto max-w-6xl rounded-2xl transition-all duration-300 ${
+          scrolled ? 'shadow-xl' : ''
+        }`}
+      >
+        <span
+          aria-hidden="true"
+          className="absolute top-1.5 left-5 right-5 h-[2px] rounded-full bg-slate-900/10 dark:bg-white/10 overflow-hidden"
+        >
+          <span
+            className="block h-full rounded-full bg-sky-500 transition-[width] duration-150"
+            style={{ width: `${Math.round(progress * 100)}%` }}
+          />
+        </span>
+
+        <div className="flex items-center justify-between gap-3 pl-3 pr-2 sm:pl-4 sm:pr-2.5 pt-3 pb-2">
+          <a href="#home" className="flex items-center gap-2.5 shrink-0 group min-h-10" aria-label="AlpinDnt — home">
+            <span className="relative grid place-items-center w-9 h-9 rounded-xl bg-sky-500 text-white font-display font-bold text-base shadow-md shadow-sky-500/40 group-hover:scale-105 transition-transform">
+              A
+              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#17171f]" />
+            </span>
+            <span className="block leading-tight min-w-0">
+              <span className="block font-display text-sm font-bold tracking-tight text-slate-900 dark:text-white truncate">
                 {personalData.nickName}
-                <span className="text-sky-400">.</span>
-              </a>
-              
-              {/* Peran Pekerjaan */}
-              <div className="space-y-2 pt-2">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  {personalData.name}
-                </h1>
-                <h2 className="text-lg sm:text-xl font-semibold text-sky-400">
-                  {t.hero.role}
-                </h2>
-              </div>
-              
-              {/* Deskripsi Singkat */}
-              <p className="text-zinc-400 text-sm sm:text-base max-w-sm leading-relaxed">
-                {t.hero.tagline}
-              </p>
+                <span className="text-sky-500">.</span>
+              </span>
+              <span className="block text-[9px] font-semibold tracking-wider text-slate-500 dark:text-zinc-400 truncate">
+                JUNIOR WEB DEVELOPER
+              </span>
+            </span>
+          </a>
 
-              {/* Language Selector Indicator */}
-              <div className="pt-2">
-                <LanguageToggle />
-              </div>
-            </div>
-
-            {/* Navigasi Vertikal Pintar (Scroll Spy) - Tersembunyi di Mobile */}
-            <nav className="hidden lg:flex flex-col gap-4 py-8">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <a
-                    key={link.id}
-                    href={link.href}
-                    className="flex items-center gap-4 group py-1.5 w-fit"
-                  >
-                    {/* Garis Indikator Aktif */}
-                    <span className={`h-px transition-all duration-300 ${
-                      isActive 
-                        ? 'w-16 bg-sky-400' 
-                        : 'w-8 bg-zinc-700 group-hover:w-16 group-hover:bg-zinc-300'
-                    }`} />
-                    
-                    {/* Teks Link */}
-                    <span className={`text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
-                      isActive 
-                        ? 'text-white translate-x-1' 
-                        : 'text-zinc-500 group-hover:text-zinc-200 group-hover:translate-x-1'
-                    }`}>
-                      {link.name}
-                    </span>
-                  </a>
-                );
-              })}
-            </nav>
-
-            {/* Sosial Media & Kontak Info di Bagian Bawah */}
-            <div className="space-y-6 pt-6 lg:pt-0">
-              <div className="flex items-center gap-4 text-zinc-400">
-                <a href={personalData.github} target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-sky-400 hover:border-sky-500/40 transition-all">
-                  <GithubIcon className="w-5 h-5" />
+          <div className="hidden md:flex items-center gap-0.5">
+            {links.map((link) => {
+              const isActive = active === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? 'true' : undefined}
+                  className="relative px-3.5 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-300 group/link"
+                >
+                  <span className={isActive ? 'text-sky-600 dark:text-sky-300' : 'text-slate-500 dark:text-zinc-400 group-hover/link:text-slate-900 dark:group-hover/link:text-white'}>
+                    {link.name}
+                  </span>
+                  <span
+                    className={`absolute left-3.5 right-3.5 -bottom-px h-0.5 rounded-full bg-sky-500 origin-left transition-transform duration-300 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover/link:scale-x-50'
+                    }`}
+                  />
                 </a>
-                <a href={personalData.linkedin} target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-sky-400 hover:border-sky-500/40 transition-all">
-                  <LinkedinIcon className="w-5 h-5" />
-                </a>
-                <a href={personalData.instagram} target="_blank" rel="noreferrer" className="p-2 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-sky-400 hover:border-sky-500/40 transition-all">
-                  <InstagramIcon className="w-5 h-5" />
-                </a>
-                <a href={`mailto:${personalData.email}`} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-sky-400 hover:border-sky-500/40 transition-all">
-                  <Mail className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
+              );
+            })}
+          </div>
 
-          </aside>
-
-          {/* ==========================================
-              KOLOM KANAN: SCROLLABLE CONTENT PANEL
-              ========================================== */}
-          <main className="lg:col-span-7 lg:py-24 py-6 space-y-24 lg:space-y-32">
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Contact />
-            <Footer />
-          </main>
-
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/25">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              Open to work
+            </span>
+            <ThemeToggle compact />
+            <a
+              href="#contact"
+              className="hidden sm:inline-flex items-center gap-1.5 px-5 h-10 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold transition-all duration-300 shadow-md shadow-sky-500/30 hover:shadow-lg hover:shadow-sky-500/40"
+            >
+              <span>Hire Me</span>
+              <Mail className="w-3.5 h-3.5" />
+            </a>
+            <button
+              className="md:hidden grid place-items-center w-10 h-10 rounded-xl text-slate-600 dark:text-zinc-200 hover:bg-sky-500/10 hover:text-sky-500 transition"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+            >
+              {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </nav>
 
+      {open && (
+        <div className="glass-nav md:hidden mx-auto max-w-6xl mt-2 rounded-2xl p-2 space-y-1">
+          {links.map((link) => {
+            const isActive = active === link.id;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                aria-current={isActive ? 'true' : undefined}
+                className={`flex items-center justify-between px-4 min-h-11 rounded-xl text-sm font-bold transition ${
+                  isActive
+                    ? 'bg-sky-500/15 text-sky-600 dark:text-sky-300'
+                    : 'text-slate-700 dark:text-zinc-100 hover:bg-sky-500/10'
+                }`}
+              >
+                <span>{link.name}</span>
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />}
+              </a>
+            );
+          })}
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="flex items-center justify-center gap-2 px-4 min-h-11 rounded-xl bg-sky-500 text-white text-sm font-bold"
+          >
+            <span>Hire Me</span>
+            <Mail className="w-4 h-4" />
+          </a>
+        </div>
+      )}
+    </header>
+  );
+};
+
+const SocialDock = () => (
+  <div className="fixed left-3 bottom-4 z-30 hidden lg:flex flex-col gap-2 glass rounded-2xl p-2">
+    <a href={personalData.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-sky-500 transition">
+      <GithubIcon className="w-4 h-4" />
+    </a>
+    <a href={personalData.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-sky-500 transition">
+      <LinkedinIcon className="w-4 h-4" />
+    </a>
+    <a href={personalData.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-sky-500 transition">
+      <InstagramIcon className="w-4 h-4" />
+    </a>
+    <a href={`mailto:${personalData.email}`} aria-label="Email" className="p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-sky-500 transition">
+      <Mail className="w-4 h-4" />
+    </a>
+  </div>
+);
+
+function PortfolioPage() {
+  return (
+    <div className="min-h-screen font-sans relative">
+      <div className="aurora-field" aria-hidden="true">
+        <div className="aurora-blob aurora-blob-a" />
+        <div className="aurora-blob aurora-blob-b" />
+        <div className="aurora-blob aurora-blob-c" />
+      </div>
+      <CanvasCursor />
+      <GlassNav />
+      <SocialDock />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
 
 export function App() {
+  const [loading, setLoading] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches,
+  );
+
+  useEffect(() => {
+    if (!loading) return undefined;
+    document.body.style.overflow = 'hidden';
+    const startedAt = Date.now();
+    const MIN_MS = 1400;
+    const MAX_MS = 2600;
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      document.body.style.overflow = '';
+      setLoading(false);
+    };
+    const finishAfterMin = () => {
+      const elapsed = Date.now() - startedAt;
+      setTimeout(finish, Math.max(0, MIN_MS - elapsed));
+    };
+    if (document.readyState === 'complete') {
+      finishAfterMin();
+    } else {
+      window.addEventListener('load', finishAfterMin, { once: true });
+    }
+    const cap = setTimeout(finish, MAX_MS);
+    return () => {
+      clearTimeout(cap);
+      window.removeEventListener('load', finishAfterMin);
+      document.body.style.overflow = '';
+    };
+  }, [loading]);
+
   return (
-    <LanguageProvider>
-      <MainLayout />
-    </LanguageProvider>
+    <ThemeProvider>
+      <AnimatePresence>{loading && <Loader key="boot-loader" />}</AnimatePresence>
+      <PortfolioPage />
+    </ThemeProvider>
   );
 }
 
