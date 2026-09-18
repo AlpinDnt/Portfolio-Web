@@ -1,149 +1,28 @@
 /**
  * ==============================================================================
- * DICTIONARY TRANSLATIONS & PERSONAL DATA
+ * TRANSLATIONS DICTIONARY & PERSONAL DATA
  * ==============================================================================
- * File ini berisi semua data personal dan teks dua bahasa (Bahasa Indonesia & English).
- * Anda bisa mengubah nama, bio, proyek, skill, dan tautan sosial media di sini.
+ * This file contains all personal data and English-only UI copy.
+ * Edit your name, bio, projects, skills, and social links here.
  */
 
 export const personalData = {
-  // --- KUSTOMISASI IDENTITAS UTAMA ---
+  // --- MAIN IDENTITY CUSTOMIZATION ---
   name: "I Putu Alvi Rupa Dinata",
   nickName: "AlpinDnt",
   role: "Junior Web Developer",
   location: "Denpasar, Bali,\nIndonesia",
-  email: "ptu.alvi@gmail.com", // Ubah ke email Anda
-  whatsapp: "+6282325494970", // Ubah ke nomor WA Anda
-  github: "https://github.com/AlpinDnt", // Ubah ke URL GitHub Anda
-  linkedin: "https://www.linkedin.com/in/alpindnt/", // Ubah ke URL LinkedIn Anda
-  instagram: "https://www.instagram.com/alpindnt?igsh=MTN4NnNzd2hrcTh1MA%3D%3D&utm_source=qr", // Ubah ke URL Instagram Anda
-  cvUrl: "/AlpinDnt-CV.pdf", // Path file CV PDF Anda di folder public/
+  email: "ptu.alvi@gmail.com", // Change to your email
+  whatsapp: "+6282325494970", // Change to your WhatsApp number
+  github: "https://github.com/AlpinDnt", // Change to your GitHub URL
+  linkedin: "https://www.linkedin.com/in/alpindnt/", // Change to your LinkedIn URL
+  instagram: "https://www.instagram.com/alpindnt?igsh=MTN4NnNzd2hrcTh1MA%3D%3D&utm_source=qr", // Change to your Instagram URL
+  cvUrl: "/AlpinDnt-CV.pdf", // Path to your CV PDF file in the public/ folder
 };
 
 export const translations = {
   // ==========================================
-  // 1. BAHASA INDONESIA (ID)
-  // ==========================================
-  id: {
-    nav: {
-      home: "Beranda",
-      about: "Tentang Saya",
-      skills: "Keahlian",
-      projects: "Proyek",
-      contact: "Kontak",
-    },
-    hero: {
-      badge: "Tersedia Untuk Pekerjaan & Proyek",
-      greeting: "Halo 👋, Saya",
-      role: "Junior Web Developer",
-      tagline: "Membangun web yang modern, responsif, dan kaya akan interaksi.",
-      description: "Saya seorang Web Developer pemula yang berdedikasi menciptakan pengalaman web bersih, responsif, dan nyaman digunakan dengan teknologi JavaScript & React terbaru.",
-      viewProjects: "Lihat Proyek",
-      contactMe: "Hubungi Saya",
-      downloadCv: "Unduh CV",
-    },
-    about: {
-      title: "Tentang Saya",
-      subtitle: "Mengenal Latar Belakang & Semangat Koding Saya",
-      badge: "Latar Belakang",
-      paragraph1: "Saya adalah seorang **Junior Web Developer** berdomisili di Bali yang berfokus pada pengembangan antarmuka web modern (Frontend Development). Saya menikmati proses mengubah ide desain visual menjadi kode aplikasi yang interaktif dan responsif.",
-      paragraph2: "Selalu antusias mempelajari teknologi web terkini seperti React.js, Tailwind CSS, dan arsitektur aplikasi modern. Saya berkomitmen untuk menulis kode yang bersih, mudah dipelihara, dan terus mengasah skill setiap hari.",
-      stats: {
-        projects: "Proyek Selesai",
-        hours: "Jam Koding",
-        skills: "Teknologi Dikuasai",
-        commits: "Git Commits",
-      },
-    },
-    skills: {
-      title: "Keahlian & Teknologi",
-      subtitle: "Teknologi dan tools yang saya gunakan dalam pembuatan web",
-      categories: {
-        frontend: "Frontend Development",
-        backend: "Backend & Database",
-        tools: "Tools & Workflow",
-      },
-      levels: {
-        advanced: "Mahir",
-        intermediate: "Menengah",
-        learning: "Dalam Pembelajaran",
-      }
-    },
-    projects: {
-      title: "Portofolio Proyek",
-      subtitle: "Kumpulan proyek web yang telah saya bangun",
-      filterAll: "Semua Proyek",
-      filterWebApp: "Web App",
-      filterFrontend: "Frontend UI",
-      filterLanding: "Landing Page",
-      viewLive: "Live Demo",
-      viewSource: "Kode Source",
-      items: [
-        {
-          id: 1,
-          category: "Web App",
-          title: "Student Notes AI",
-          description: "Student Notes AI adalah aplikasi web full-stack yang memungkinkan pengguna meng-upload materi kuliah dalam format PDF, lalu secara otomatis menghasilkan catatan belajar terstruktur, ringkasan TL;DR, kuis pilihan ganda, dan flashcard menggunakan Gemini API. Setiap pengguna memiliki akun pribadi dengan riwayat materi yang bersifat privat, dan admin memiliki dashboard khusus untuk mengelola pengguna.",
-          tech: ["React.js", "Tailwind CSS", "Laravel", "TypeScript", "PHP", "SQL", "Google Gemini API (gemini-2.5-flash)", "docker"],
-          liveUrl: "https://student-notes-ai-git-main-kanebo.vercel.app/",
-          githubUrl: "https://github.com/AlpinDnt/student-notes-ai",
-          featured: true,
-          type: "webApp"
-        },
-        {
-          id: 2,
-          category: "Web App",
-          title: "Lumina Store",
-          description: "Lumina Store adalah aplikasi web e-commerce fashion modern dan responsif yang dirancang dengan estetika minimalis. Fitur utamanya meliputi pencarian produk real-time, filter kategori dinamis, drawer keranjang belanja interaktif berbasis Context API & LocalStorage, modal detail produk dengan size selector, hingga alur simulasikan checkout pesanan yang transparan.",
-          tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Context API", "Lucide React"],
-          liveUrl: "https://lumina-store-online.vercel.app/",
-          githubUrl: "https://github.com/AlpinDnt/Lumina-Store",
-          featured: true,
-          type: "webApp"
-        },
-        {
-          id: 3,
-          category: "Landing Page",
-          title: "Kroma Coffee",
-          description: "Landing page kedai kopi specialty modern dan estetis bernuansa warm dark mode. Dilengkapi dengan filter menu interaktif berbasis kategori, section cerita/filosofi roasting, informasi lokasi & jam operasional dengan peta Google Maps ber-theme gelap, serta optimasi SEO Metadata.",
-          tech: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "Lucide React"],
-          liveUrl: "https://kroma-coffee.vercel.app/",
-          githubUrl: "https://github.com/AlpinDnt/kroma-coffee",
-          featured: true,
-          type: "landing"
-        }
-      ]
-    },
-    contact: {
-      title: "Hubungi Saya",
-      subtitle: "Tertarik bekerjasama atau ingin bertanya? Mari terhubung!",
-      formTitle: "Kirim Pesan",
-      nameLabel: "Nama Lengkap",
-      namePlaceholder: "Masukkan nama Anda",
-      emailLabel: "Alamat Email",
-      emailPlaceholder: "nama@gmail.com",
-      subjectLabel: "Subjek",
-      subjectPlaceholder: "Tujuan pesan Anda",
-      messageLabel: "Pesan",
-      messagePlaceholder: "Tuliskan pesan Anda di sini...",
-      sendBtn: "Kirim Pesan",
-      sendingBtn: "Mengirim...",
-      successMsg: "Pesan berhasil dikirim! Saya akan segera membalas.",
-      errorMsg: "Harap isi semua kolom form sebelum mengirim.",
-      directInfo: "Informasi Kontak",
-      locationLabel: "Lokasi",
-      emailDirectLabel: "Email Resmi",
-      socialsLabel: "Media Sosial",
-    },
-    footer: {
-      tagline: "Dibangun dengan React.js & Tailwind CSS.",
-      copyright: "Hak Cipta Dilindungi.",
-      backToTop: "Kembali ke Atas",
-    }
-  },
-
-  // ==========================================
-  // 2. ENGLISH (EN)
+  // ENGLISH (EN) — single language
   // ==========================================
   en: {
     nav: {
@@ -202,12 +81,12 @@ export const translations = {
       items: [
         {
           id: 1,
-          category: "Web App",
-          title: "Student Notes AI",
-          description: "Student Notes AI is a full-stack web application that lets users upload PDF course materials and automatically generates structured study notes, TL;DR summaries, multiple-choice quizzes, and flashcards using the Gemini API. Each user has a personal account with private material history, while admins get a dedicated dashboard for user management.",
-          tech: ["React.js", "Tailwind CSS", "Laravel", "TypeScript", "PHP", "SQL", "Google Gemini API (gemini-2.5-flash)", "docker"],
-          liveUrl: "https://student-notes-ai-git-main-kanebo.vercel.app/",
-          githubUrl: "https://github.com/AlpinDnt/student-notes-ai",
+          category: "Landing Page",
+          title: "Serene Stay",
+          description: "Serene Stay is a modern and fully responsive villa & stay booking website. Key features include real-time villa search, dynamic category & price filtering, an interactive photo gallery, room detail modals with full amenities, and a transparent simulated booking flow.",
+          tech: ["React.js", "Tailwind CSS", "Vite", "JavaScript", "Lucide React"],
+          liveUrl: "https://serene-stayy.vercel.app/",
+          githubUrl: "https://github.com/AlpinDnt/serene-stayy",
           featured: true,
           type: "webApp"
         },
